@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = CrowdfundingApplication.class)
 public class UserServiceTest {
@@ -29,4 +28,13 @@ public class UserServiceTest {
         List<User> userList = userService.searchAll();
         Assert.assertNotNull(userList);
     }
+
+    @Test
+    public void checkUsername(){
+        String username="张三";
+        Assert.assertTrue(userService.checkUsername(username));
+        username="张三123";
+        Assert.assertFalse(userService.checkUsername(username));
+    }
+
 }

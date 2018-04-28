@@ -20,7 +20,7 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User login(String username,String password){
+    public User login(String username, String password){
         return userMapper.selectByUsernameAndPassword(username,password);
     }
 
@@ -28,4 +28,16 @@ public class UserService {
         return userMapper.selectAll();
     }
 
+
+    public void addUser(User user){
+        userMapper.insertSelective(user);
+    }
+
+    public void updateUser(User user){
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    public boolean checkUsername(String username){
+        return userMapper.selectByUsername(username);
+    }
 }

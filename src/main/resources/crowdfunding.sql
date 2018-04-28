@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : xhp
+Source Server         : localhost_3306
 Source Server Version : 50720
 Source Host           : localhost:3306
 Source Database       : crowdfunding
@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-04-27 17:30:19
+Date: 2018-04-28 16:11:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `approval`
+-- Table structure for approval
 -- ----------------------------
 DROP TABLE IF EXISTS `approval`;
 CREATE TABLE `approval` (
@@ -32,7 +32,7 @@ CREATE TABLE `approval` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `comment`
+-- Table structure for comment
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -49,7 +49,7 @@ CREATE TABLE `comment` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `homecarousel`
+-- Table structure for homecarousel
 -- ----------------------------
 DROP TABLE IF EXISTS `homecarousel`;
 CREATE TABLE `homecarousel` (
@@ -63,7 +63,7 @@ CREATE TABLE `homecarousel` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `homedisplay`
+-- Table structure for homedisplay
 -- ----------------------------
 DROP TABLE IF EXISTS `homedisplay`;
 CREATE TABLE `homedisplay` (
@@ -76,7 +76,23 @@ CREATE TABLE `homedisplay` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `order`
+-- Table structure for manager
+-- ----------------------------
+DROP TABLE IF EXISTS `manager`;
+CREATE TABLE `manager` (
+  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `mpassword` varchar(255) DEFAULT NULL,
+  `mname` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`mid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of manager
+-- ----------------------------
+INSERT INTO `manager` VALUES ('1', 'admin', 'admin');
+
+-- ----------------------------
+-- Table structure for order
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
@@ -93,7 +109,7 @@ CREATE TABLE `order` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `project`
+-- Table structure for project
 -- ----------------------------
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
@@ -125,7 +141,7 @@ CREATE TABLE `project` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `projectclassification`
+-- Table structure for projectclassification
 -- ----------------------------
 DROP TABLE IF EXISTS `projectclassification`;
 CREATE TABLE `projectclassification` (
@@ -141,7 +157,7 @@ CREATE TABLE `projectclassification` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `sponsor`
+-- Table structure for sponsor
 -- ----------------------------
 DROP TABLE IF EXISTS `sponsor`;
 CREATE TABLE `sponsor` (
@@ -156,11 +172,11 @@ CREATE TABLE `sponsor` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `user`
+-- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `uid` varchar(255) DEFAULT NULL COMMENT '用户编号',
+  `uid` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户编号',
   `unickname` varchar(255) DEFAULT NULL COMMENT '用户昵称',
   `upassword` varchar(255) DEFAULT NULL COMMENT '用户密码',
   `uname` varchar(255) DEFAULT NULL COMMENT '用户名称',
@@ -168,9 +184,11 @@ CREATE TABLE `user` (
   `uidNumber` varchar(18) DEFAULT NULL COMMENT '用户身份证',
   `uphone` int(11) DEFAULT NULL COMMENT '用户电话',
   `uimage` varchar(255) DEFAULT NULL COMMENT '用户头像',
-  `uemail` varchar(255) DEFAULT NULL COMMENT '用户邮箱'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `uemail` varchar(255) DEFAULT NULL COMMENT '用户邮箱',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', 'test', '123456', 'hahahah', '男', '320545454545454', '1390004545', '/img/123.jpg', 'ksjafas@qq.com');

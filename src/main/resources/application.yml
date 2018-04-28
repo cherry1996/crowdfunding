@@ -1,6 +1,13 @@
 server:
   port: 8090
 spring:
+  thymeleaf:
+      prefix: classpath:/template/
+      suffix: .html
+      mode: LEGACYHTML5
+      encoding: UTF-8
+      content-type: text/html
+      cache: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/crowdfunding
