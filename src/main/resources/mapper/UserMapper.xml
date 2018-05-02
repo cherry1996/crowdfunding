@@ -12,7 +12,7 @@
     <result column="uname" jdbcType="VARCHAR" property="uname" />
     <result column="usex" jdbcType="VARCHAR" property="usex" />
     <result column="uidNumber" jdbcType="VARCHAR" property="uidnumber" />
-    <result column="uphone" jdbcType="INTEGER" property="uphone" />
+    <result column="uphone" jdbcType="VARCHAR" property="uphone" />
     <result column="uimage" jdbcType="VARCHAR" property="uimage" />
     <result column="uemail" jdbcType="VARCHAR" property="uemail" />
   </resultMap>
@@ -65,7 +65,7 @@
       )
     values (#{uid,jdbcType=VARCHAR}, #{unickname,jdbcType=VARCHAR}, #{upassword,jdbcType=VARCHAR}, 
       #{uname,jdbcType=VARCHAR}, #{usex,jdbcType=VARCHAR}, #{uidnumber,jdbcType=VARCHAR}, 
-      #{uphone,jdbcType=INTEGER}, #{uimage,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}
+      #{uphone,jdbcType=VARCHAR}, #{uimage,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xhp.crowdfunding.entity.User">
@@ -123,7 +123,7 @@
         #{uidnumber,jdbcType=VARCHAR},
       </if>
       <if test="uphone != null">
-        #{uphone,jdbcType=INTEGER},
+        #{uphone,jdbcType=VARCHAR},
       </if>
       <if test="uimage != null">
         #{uimage,jdbcType=VARCHAR},
@@ -156,7 +156,7 @@
         uidNumber = #{uidnumber,jdbcType=VARCHAR},
       </if>
       <if test="uphone != null">
-        uphone = #{uphone,jdbcType=INTEGER},
+        uphone = #{uphone,jdbcType=VARCHAR},
       </if>
       <if test="uimage != null">
         uimage = #{uimage,jdbcType=VARCHAR},
@@ -178,7 +178,7 @@
       uname = #{uname,jdbcType=VARCHAR},
       usex = #{usex,jdbcType=VARCHAR},
       uidNumber = #{uidnumber,jdbcType=VARCHAR},
-      uphone = #{uphone,jdbcType=INTEGER},
+      uphone = #{uphone,jdbcType=VARCHAR},
       uimage = #{uimage,jdbcType=VARCHAR},
       uemail = #{uemail,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=VARCHAR}

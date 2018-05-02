@@ -19,3 +19,11 @@ mybatis:
 logging:
   level:
     com.octopus.mybatistest.dao: DEBUG
+ftp:
+  server:
+    ip: #ftp IP
+    user: #ftp用户
+    pass: #ftp密码
+    path: #ftp路径
+    http:
+      prefix: http://images.yuchu.ac.cn/

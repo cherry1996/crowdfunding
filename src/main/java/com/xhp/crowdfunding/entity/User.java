@@ -62,7 +62,7 @@ public class User {
      *
      * @mbg.generated
      */
-    private Integer uphone;
+    private String uphone;
 
     /**
      *
@@ -234,7 +234,7 @@ public class User {
      *
      * @mbg.generated
      */
-    public Integer getUphone() {
+    public String getUphone() {
         return uphone;
     }
 
@@ -246,7 +246,7 @@ public class User {
      *
      * @mbg.generated
      */
-    public void setUphone(Integer uphone) {
+    public void setUphone(String uphone) {
         this.uphone = uphone;
     }
 

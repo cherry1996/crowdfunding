@@ -35,15 +35,15 @@
 				} else {
 					window.location.href = "index.html";
 				}
-				$("input[name=Uid]").val(userInfo.Uid);
-				$("[name=Uimage]").attr("src", userInfo.Uimage);
-				$("input[name=Unickname]").val(userInfo.Unickname);
-				$("input[name=Usex]:radio").each(function() {
-					if(userInfo.Usex == this.value) {
+				$("input[name=uid]").val(userInfo.uid);
+				$("[name=uimage]").attr("src", userInfo.uimage);
+				$("input[name=unickname]").val(userInfo.unickname);
+				$("input[name=usex]:radio").each(function() {
+					if(userInfo.usex == this.value) {
 						this.checked = "checked";
 					}
 				});
-				$("input[name=Uphone]").val(userInfo.Uphone);
+				$("input[name=uphone]").val(userInfo.uphone);
 
 			})
 
@@ -95,7 +95,8 @@
 				<!-- 登录状态 begin -->
 				<div class="siteHCountBox" id="isLogin">
 					<div class="index-avatar fl">
-						<img src="" alt="头像"><i></i>
+						<!--todo-->
+						<img name="uimage" alt="头像"><i></i>
 					</div>
 					<div class="siteHCountInner">
 						<!-- <a href="/zc/#/user-center/reward-order" class="grzx btn_ALink" target="_self">个人中心</a> -->
@@ -237,7 +238,7 @@
 						<div class="grzxRTopBox moduleItem">
 							<div class="grzxCountBox clearfix">
 								<div class="ftDiv">
-									<a href="userMessage.html" class="siteCircleBox"><img name="Uimage"></a>
+									<!--<a href="userMessage.html" class="siteCircleBox"><img name="uimage"></a>-->
 								</div>
 								<div class="scDiv">
 									<p class="ftP" name="Unickname">
@@ -289,7 +290,7 @@
 							<div class="grzlBox">
 								<form action="" id="userform" method="post" enctype="multipart/form-data">
 									<div class="grzxFGBox clearfix">
-										<input type="hidden" class="grzxFGLabel" name="Uid" />
+										<input type="hidden" class="grzxFGLabel" name="uid" />
 									</div>
 
 									<div class="grzxFGBox clearfix">
@@ -308,7 +309,7 @@
 																height: 100px;
 															}
 															
-															input[name=Uimage] {
+															input[name=uimage] {
 																margin-top: 35px;
 																margin-left: 20px;
 															}
@@ -318,7 +319,7 @@
 															<div id="preview"></div>
 															<div id="fileArea">
 																<label class="fileUp" for="chooseImg"></label>
-																<input type="file" accept="image/*" lay-filter='chooseImg' name="Uimage" class="chooseImg" id="chooseImg" onchange="preview(this)" value="选择文件">
+																<input type="file" accept="image/*" lay-filter='chooseImg' name="uimage" class="chooseImg" id="chooseImg" onchange="preview(this)" value="选择文件">
 															</div>
 															<div class="layui-form-mid layui-word-aux layui-col-md3 mycol-space10 tips "></div>
 															<div style="clear:both;"></div>
@@ -334,7 +335,7 @@
 										<div class="grzxFGCBox sitePHBox">
 											<span> <input type="text"
 											class="grzxInput sitePHInput ng-isolate-scope ng-pristine ng-valid ng-valid-required"
-											name="Unickname" placeholder="请输入有效昵称" validation=""
+											name="unickname" placeholder="请输入有效昵称" validation=""
 											required="" valid-type="nickName" error_to="#nickNameError"
 											empty_msg="请输入有效昵称" error_msg="昵称只允许输入4-24位字符"> <span
 											class="sitePHTip">请输入有效昵称</span>
@@ -346,15 +347,15 @@
 										<div class="grzxFGCBox clearfix">
 											<!-- ngRepeat: item in sex -->
 											<label class="grzxFGRadioLabel ng-binding ng-scope"><input
-											type="radio" name="Usex" value="男"
+											type="radio" name="usex" value="男"
 											class="ng-pristine ng-valid">男</label>
 											<!-- end ngRepeat: item in sex -->
 											<label class="grzxFGRadioLabel ng-binding ng-scope"><input
-											type="radio" name="Usex" value="女"
+											type="radio" name="usex" value="女"
 											class="ng-pristine ng-valid">女</label>
 											<!-- end ngRepeat: item in sex -->
 											<label class="grzxFGRadioLabel ng-binding ng-scope"><input
-											type="radio" name="Usex" value="保密"
+											type="radio" name="usex" value="保密"
 											class="ng-pristine ng-valid">保密</label>
 											<!-- end ngRepeat: item in sex -->
 										</div>
@@ -365,7 +366,7 @@
 										<div class="grzxFGCBox sitePHBox">
 											<span> <input type="text"
 											class="grzxInput sitePHInput ng-isolate-scope ng-pristine ng-valid ng-valid-required"
-											name="Uphone" placeholder="请输入有效电话" validation="" required=""
+											name="uphone" placeholder="请输入有效电话" validation="" required=""
 											valid-type="nickName" error_to="#nickNameError"
 											empty_msg="请输入有效电话" error_msg="电话只允许输入11位数字"> <span
 											class="sitePHTip">请输入有效电话</span>

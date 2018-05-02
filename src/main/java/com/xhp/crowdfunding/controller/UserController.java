@@ -3,16 +3,18 @@ package com.xhp.crowdfunding.controller;
 import com.google.gson.Gson;
 import com.xhp.crowdfunding.entity.User;
 import com.xhp.crowdfunding.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.net.URLEncoder;
 
 /**
@@ -22,28 +24,43 @@ import java.net.URLEncoder;
  * Date: 2018-04-28
  * Time: 13:54
  */
-@Controller
+@RestController
 @RequestMapping("manage")
 public class UserController {
 
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    @Value("${ftp.server.http.prefix}")
+    private String IMG_URL_PREFIX;
     @Autowired
     private UserService userService;
 
     @PostMapping("login.do")
-    @ResponseBody
-    public String login(HttpServletResponse response, @RequestParam("signin_username") String username, @RequestParam("signin_password") String password) throws Exception{
+    public String login(HttpServletResponse response, @RequestParam("signin_username") String username, @RequestParam("signin_password") String password) throws Exception {
         User user = userService.login(username, password);
-        if (null !=user) {
+        if (null != user) {
             Gson gson = new Gson();
-            String userInfo = URLEncoder.encode(gson.toJson(user),"UTF-8");
-            Cookie cookie = new Cookie("userInfo",userInfo);
+            String userInfo = URLEncoder.encode(gson.toJson(user), "UTF-8");
+            Cookie cookie = new Cookie("userInfo", userInfo);
             cookie.setMaxAge(60 * 50);
             cookie.setSecure(false);
             response.addCookie(cookie);
-            return "1" ;
+            return "1";
         }
-        return "0" ;
+        return "0";
     }
 
-
+    @PostMapping("UpdateUser.do")
+    public void updateUser(String uid, String unickname, String usex, String uphone, MultipartFile uimage) {
+        log.info(uid + "---" + unickname + "---" + usex + "---" + uphone + "---" + uimage.getOriginalFilename());
+        String targetFileName = userService.upload(uimage);
+        String url = IMG_URL_PREFIX + targetFileName;
+        User user = new User();
+        user.setUid(uid);
+        user.setUnickname(unickname);
+        user.setUsex(usex);
+        user.setUphone(uphone);
+        user.setUimage(url);
+        userService.updateUser(user);
+        //todo  重置cookie
+    }
 }
