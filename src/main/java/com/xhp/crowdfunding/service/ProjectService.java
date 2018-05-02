@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,5 +26,10 @@ public class ProjectService {
 
     public List<Project> searchIndex(){
         return projectMapper.searchIndex();
+    }
+
+    public void addProject(Project project){
+        project.setPid(UUID.randomUUID().toString().replaceAll("-","").toLowerCase());
+        projectMapper.insertSelective(project);
     }
 }

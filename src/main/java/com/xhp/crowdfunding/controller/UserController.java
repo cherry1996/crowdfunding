@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @PostMapping("UpdateUser.do")
-    public void updateUser(String uid, String unickname, String usex, String uphone, MultipartFile uimage) {
+    public void updateUser(HttpServletResponse response, String uid, String unickname, String usex, String uphone, MultipartFile uimage) throws Exception {
         log.info(uid + "---" + unickname + "---" + usex + "---" + uphone + "---" + uimage.getOriginalFilename());
         String targetFileName = userService.upload(uimage);
         String url = IMG_URL_PREFIX + targetFileName;
@@ -61,6 +61,36 @@ public class UserController {
         user.setUphone(uphone);
         user.setUimage(url);
         userService.updateUser(user);
-        //todo  重置cookie
+        Gson gson = new Gson();
+        String userInfo = URLEncoder.encode(gson.toJson(user), "UTF-8");
+        //  重置cookie
+        Cookie cookie = new Cookie("userInfo", userInfo);
+        cookie.setMaxAge(60 * 50);
+        cookie.setSecure(false);
+        response.addCookie(cookie);
+    }
+    @PostMapping("signUpUserNameCheck.do")
+    public String signUpUserNameCheck(@RequestParam("signup_username")String username){
+        if (userService.checkUsername(username))
+            return "false";
+        return "true";
+    }
+
+    @PostMapping("signUpUser.do")
+    public String signUpUser(@RequestParam("signup_username")String username,@RequestParam("signup_email")String email,
+                             @RequestParam("signup_password")String password){
+        User user = new User();
+        user.setUnickname(username);
+        user.setUemail(email);
+        user.setUpassword(password);
+        user.setUimage("http://images.yuchu.ac.cn/c1e619c8-ef4e-449e-9aa8-7d7512002a45.jpg");//默认头像
+        try {
+            userService.addUser(user);
+            return "true";
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return "false";
+
     }
 }

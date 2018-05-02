@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-04-28 16:11:01
+Date: 2018-05-02 14:25:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -139,6 +139,7 @@ CREATE TABLE `project` (
 -- ----------------------------
 -- Records of project
 -- ----------------------------
+INSERT INTO `project` VALUES ('302e578bf4c54b3caea4091b150228eb', '张三', '321541199111111234', null, '北京市,市辖区,东城区', 'http://images.yuchu.ac.cn/fee433bb-5348-4416-b626-6ddaf6e466d2.jpg', '哈哈哈', '哈哈哈哈哈', '2018-05-02', '123', '12', null, '还好', '哈哈哈哈哈哈', '哈哈哈哈哈哈哈哈', null, null, null, '1', '1');
 
 -- ----------------------------
 -- Table structure for projectclassification
@@ -182,13 +183,14 @@ CREATE TABLE `user` (
   `uname` varchar(255) DEFAULT NULL COMMENT '用户名称',
   `usex` varchar(5) DEFAULT NULL COMMENT '用户性别',
   `uidNumber` varchar(18) DEFAULT NULL COMMENT '用户身份证',
-  `uphone` int(11) DEFAULT NULL COMMENT '用户电话',
+  `uphone` varchar(255) DEFAULT NULL COMMENT '用户电话',
   `uimage` varchar(255) DEFAULT NULL COMMENT '用户头像',
   `uemail` varchar(255) DEFAULT NULL COMMENT '用户邮箱',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'test', '123456', 'hahahah', '男', '320545454545454', '1390004545', '/img/123.jpg', 'ksjafas@qq.com');
+INSERT INTO `user` VALUES ('1', 'test', '123456', 'hahahah', '男', '320545454545454', '1390004545', 'http://images.yuchu.ac.cn/c1e619c8-ef4e-449e-9aa8-7d7512002a45.jpg', 'ksjafas@qq.com');
+INSERT INTO `user` VALUES ('2', 'userTest', '123456', null, null, null, null, 'http://images.yuchu.ac.cn/c1e619c8-ef4e-449e-9aa8-7d7512002a45.jpg', 'test@test.com');

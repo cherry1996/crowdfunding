@@ -54,7 +54,7 @@
 				<!-- 登录状态 begin -->
 				<div class="siteHCountBox" id="isLogin">
 					<div class="index-avatar fl">
-						<img src="" alt="头像"><i></i>
+						<img name="uimage" alt="头像"><i></i>
 					</div>
 					<div class="siteHCountInner">
 						<!-- <a href="/zc/#/user-center/reward-order" class="grzx btn_ALink" target="_self">个人中心</a> -->
@@ -180,26 +180,6 @@
 						<div class="create-con clearfix">
 							<!--创建你的项目信息左侧 start-->
 							<div class="create-pro">
-								<!--<div class="form-item cover clearfix uploadBox" style="min-height:80px">-->
-
-								<!--上传图片-->
-								<!--<div class="layui-form-item layui-upload layui-row uploadCover">
-									<label class="layui-form-label" style="margin-top: 37px;">上传封面:</label>
-
-									<button type="button" class="layui-btn  layui-col-md3" id="test1" style="margin-top: 37px;">
-										<i class="layui-icon"></i>
-										上传图片</button>
-
-									<div class="layui-upload-list layui-col-md3 mycol-space10">
-										<img class="layui-upload-img layui-hide" id="preView" >
-										<p id="demoText"></p>
-										<div style="text-align: center;">
-											<button class="layui-btn layui-btn-mini demo-reload layui-hide">重传</button>
-											<button class="layui-btn layui-btn-mini layui-btn-danger demo-delete layui-hide">删除</button>
-										</div>
-									</div>
-									<div class="layui-form-mid layui-word-aux mycol-space10 tips "></div>
-								</div>-->
 
 								<div class="layui-form-item layui-row">
 									<label class="layui-form-label">上传封面</label>
@@ -232,24 +212,6 @@
 									</div>
 									<div class="layui-form-mid layui-word-aux layui-col-md3 mycol-space10 tips "></div>
 								</div>
-
-								<!--省市县三级联动-->
-								<!--<div class="layui-form-item layui-row pro_city_area">
-									<input type="hidden" name="jungle1" class="programJungle" />
-									<label class="layui-form-label">项目地点</label>
-									<div class="layui-input-inline-block layui-col-md3 ">
-										<select name="input_province1" lay-filter="input_province1" class="input_province">
-										</select>
-									</div>
-									<div class="layui-input-inline-block layui-col-md3 mycol-space10">
-										<select name="input_city1" lay-filter="input_city1" class="input_city">
-										</select>
-									</div>
-									<div class="layui-input-inline-block layui-col-md3 mycol-space10">
-										<select name="input_area1" lay-filter="input_area1" class="input_area">
-										</select>
-									</div>
-								</div>-->
 
 								<!--筹款时间-->
 								<div class="layui-form-item layui-row">
@@ -329,8 +291,15 @@
 		<script src="./js/bwizard.min.js" type="text/javascript"></script>
 
 		<script type="text/javascript">
-			$("#wizard").bwizard();
-			$(".pager").append("<li><input type='submit' class='layui-btn' lay-filter='raise_submit'  id='raise_submit' style='height: 40px;margin:0 0 5px 30px'  value='立即提交'></li>")
+            $(document).ready(function () {
+                var userInfo = $.cookie("userInfo");
+                if (userInfo) {
+                    userInfo = eval("(" + userInfo + ")");
+                    $("[name=uimage]").attr("src", userInfo.uimage);
+                }
+                $("#wizard").bwizard();
+                $(".pager").append("<li><input type='submit' class='layui-btn' lay-filter='raise_submit'  id='raise_submit' style='height: 40px;margin:0 0 5px 30px'  value='立即提交'></li>");
+            })
 		</script>
 	</body>
 
